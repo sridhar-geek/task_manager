@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types'
 //Imports from another files
 import TaskForm from "./Components/TaskForm"
 import TaskList from "./Components/TaskList"

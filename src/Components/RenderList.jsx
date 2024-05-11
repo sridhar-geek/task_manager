@@ -1,10 +1,16 @@
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
-
-import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 
 const RenderList = ({task}) => {
-
+  RenderList.propTypes = {
+    task: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      dueDate: PropTypes.string,
+      priority: PropTypes.string,
+    }).isRequired,
+  };
   return (
     <div>
       <div className="mx-5 task-list my-7 lg:mx-40 rounded-lg p-3">
@@ -39,5 +45,6 @@ const RenderList = ({task}) => {
     </div>
   );
 }
+
 
 export default RenderList
