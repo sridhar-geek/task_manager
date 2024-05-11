@@ -10,7 +10,7 @@ const TaskForm = () => {
   const {id} = useSelector((store) => store.task)
 
   const dispatch = useDispatch()
-  const [selectedPriority, setSelectedPriority] = useState("moderate");
+  const [selectedPriority, setSelectedPriority] = useState("Moderate");
   const [newTask, setNewTask] = useState({
     taskId: id,
     title: "",
@@ -107,11 +107,11 @@ const TaskForm = () => {
             <button
               type="button"
               className={`priority  ${
-                selectedPriority === "important"
-                  ? "bg-red-500 hover:bg-red-600"
+                selectedPriority === "Important"
+                  ? "bg-important hover:bg-red-600"
                   : ""
               }`}
-              onClick={() => handleClick("important")}
+              onClick={() => handleClick("Important")}
             >
               {/* <input type="radio" name="priority" id="High" /> */}
               Important
@@ -119,11 +119,11 @@ const TaskForm = () => {
             <button
               type="button"
               className={`priority  ${
-                selectedPriority === "moderate"
-                  ? "bg-yellow-500 hover:bg-yellow-600"
+                selectedPriority === "Moderate"
+                  ? "bg-moderate hover:bg-yellow-600"
                   : ""
               }`}
-              onClick={() => handleClick("moderate")}
+              onClick={() => handleClick("Moderate")}
             >
               {/* <input type="radio" name="priority" id="Medium" /> */}
               Moderate
@@ -131,11 +131,11 @@ const TaskForm = () => {
             <button
               type="button"
               className={`priority  ${
-                selectedPriority === "give a try"
-                  ? "bg-green-500 hover:bg-green-600"
+                selectedPriority === "Give a try"
+                  ? "bg-low hover:bg-green-600"
                   : ""
               }`}
-              onClick={() => handleClick("give a try")}
+              onClick={() => handleClick("Give a try")}
             >
               {/* <input type="radio" name="priority" id="Low" /> */}
               Give a try
