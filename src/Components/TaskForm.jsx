@@ -2,17 +2,21 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Imports from another files
-import { addTask } from "../Redux/Task_Slice";
+import { addTask,incrementId } from "../Redux/Task_Slice";
+
 const TaskForm = () => {
+
+  // retreiwing data from redux store
+  const {id} = useSelector((store) => store.task)
+
   const dispatch = useDispatch()
   const [selectedPriority, setSelectedPriority] = useState("moderate");
-
   const [newTask, setNewTask] = useState({
-    id: 1,
+    taskId: id,
     title: "",
     description: "",
     dueDate: "",
-    priority: "",
+    priority: selectedPriority,
   });
 
 
@@ -32,22 +36,14 @@ const TaskForm = () => {
       );
   };
 
-  // Ensure minimum length of 30 characters
-    const handleDescriptionChange = (e) => {
-      if (e.target.value.length >= 30) {
-        setNewTask({ ...newTask, description: e.target.value });
-      } else {
-        alert("Description must be at least 30 characters long.");
-      }
-    };
+
   // Adding task to redux global store
-  const addTask = (e) => {
+  const addNewTask = (e) => {
     // if(newTask.description.length < 29) return alert("Description must be at least 30 characters long.");
     e.preventDefault();
-    console.log(newTask);
     dispatch(addTask(newTask))
+    dispatch(incrementId(id+1))
     setNewTask({
-      id: Number,
       title: "",
       description: "",
       dueDate: "",
@@ -55,14 +51,16 @@ const TaskForm = () => {
     });
   };
 
+
   // setting priority to task object or state
   const handleClick = (importance) => {
     setSelectedPriority(importance);
-    setNewTask({ ...newTask, priority: importance });
+    setNewTask({ ...newTask, priority: importance});
   };
+
   return (
     <div className=" mx-5 lg:mx-40 mt-14 ">
-      <form onSubmit={addTask}>
+      <form onSubmit={addNewTask}>
         {/* Starting a grid layout */}
         <div className="grid grid-cols-4  gap-3">
           {/* First grid column */}
