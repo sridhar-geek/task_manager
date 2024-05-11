@@ -1,8 +1,36 @@
-# React + Vite
+ # Task Manager React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ ## Description
+ ***This project is a task manager application built with React using Vite for development. It leverages Redux Toolkit for global state management and Tailwind CSS for utility-first styling.**
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Create, manage, and view tasks
+2. Edit existing tasks
+3. Mark tasks as completed
+4. Prioritize tasks
+
+*View the live demo of the Project [from here](https://task-manager-woad-seven.vercel.app/)*
+
+## Tech Stack
+- Reactjs
+- Redux toolkit
+- Tailwind CSS
+- HTML5
+- CSS3
+- JavaScript
+
+
+## Getting Started
+
+- Nodejs has to be present in your machine 
+- If not install from [here](https://nodejs.org/en/download)
+
+## Setup/Installition
+- Clone the repository using `git clone https://github.com/sridhar-geek/task_manager`
+- cd task_manager
+- install dependencies using  `npm install` command
+- run it locally using  `npm run dev` command
+
+
+This will start the development server and open the app in your browser at http://localhost:5173 
