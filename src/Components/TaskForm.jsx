@@ -1,25 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Imports from another files
-import { addTask,incrementId } from "../Redux/Task_Slice";
+import { addTask, incrementId,completeEdit } from "../Redux/Task_Slice";
 
 const TaskForm = () => {
 
   // retreiwing data from redux store
-  const {id} = useSelector((store) => store.task)
+const { id, tasks, isEdit, editId } = useSelector(
+  (store) => store.task
+);
 
   const dispatch = useDispatch()
-  const [selectedPriority, setSelectedPriority] = useState("Moderate");
+  const [selectedPriority, setSelectedPriority] = useState("");
   const [newTask, setNewTask] = useState({
     taskId: id,
     title: "",
     description: "",
     dueDate: "",
-    priority: selectedPriority,
+    priority: "",
   });
 
-
+  useEffect(()=> {
+    if(isEdit) {
+      const taskToUpdate = tasks.find(task => task.taskId === editId)
+      setNewTask({
+        taskId: taskToUpdate.taskId,
+        title: taskToUpdate.title,
+        description: taskToUpdate.description,
+        dueDate: taskToUpdate.dueDate,
+        priority: taskToUpdate.priority
+      })
+    }
+    
+  },[isEdit, editId])
   // Ensuring Correct due date is entered 
   const handleDueDateChange = (e) => {
     const today = new Date().toISOString().slice(0, 10); // Get today's date in YYYY-MM-DD format
@@ -31,26 +45,39 @@ const TaskForm = () => {
     if (selectedDate >= new Date(today) && selectedDate <= oneYearFromToday)
       setNewTask({ ...newTask, dueDate: e.target.value });
     else
-      alert(
-        "Invalid due date: Please select a date between today and one year from now."
-      );
-  };
+    alert(
+  "Invalid due date: Please select a date between today and one year from now."
+);
+};
 
 
-  // Adding task to redux global store
-  const addNewTask = (e) => {
-    // if(newTask.description.length < 29) return alert("Description must be at least 30 characters long.");
-    e.preventDefault();
-    dispatch(addTask(newTask))
-    dispatch(incrementId(id+1))
-    setNewTask({
-      title: "",
+// Adding task to redux global store
+const addNewTask = (e) => {
+  // if(newTask.description.length < 29) return alert("Description must be at least 30 characters long.");
+  e.preventDefault();
+  dispatch(addTask(newTask));
+  dispatch(incrementId(id + 1));
+
+  setNewTask({
+    taskId: id+1,
+    title: "",
       description: "",
       dueDate: "",
       priority: "",
     });
-  };
 
+  };
+  const updateTask = (e) => {
+    e.preventDefault()
+    dispatch(completeEdit(newTask))
+    setNewTask({
+      taskId:id+1,
+      title:"",
+      description:"",
+      dueDate:"",
+      priority:"",
+    })
+  }
 
   // setting priority to task object or state
   const handleClick = (importance) => {
@@ -59,8 +86,8 @@ const TaskForm = () => {
   };
 
   return (
-    <div className=" mx-5 lg:mx-40 mt-14 ">
-      <form onSubmit={addNewTask}>
+    <div className="x-margin mt-14 ">
+      <form onSubmit={isEdit ? updateTask: addNewTask}>
         {/* Starting a grid layout */}
         <div className="grid grid-cols-4  gap-3">
           {/* First grid column */}
@@ -143,12 +170,21 @@ const TaskForm = () => {
           </div>
           {/* Fourth grid column */}
           <div className="col-start-2 col-end-4">
-            <button
-              type="submit"
-              className="bg-primary w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
-            >
-              Add Task
-            </button>
+            {isEdit ? (
+              <button
+                type="submit"
+                className="bg-primary w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
+              >
+                Update Task
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="bg-primary w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl"
+              >
+                Add Task
+              </button>
+            )}
           </div>
         </div>
       </form>

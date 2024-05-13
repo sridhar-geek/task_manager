@@ -10,6 +10,10 @@
   .input-field {
     @apply w-full p-3 rounded-xl focus:ring focus:border-primary outline-none bg-input_bg;
   }
+
+  .x-margin{
+    @apply mx-3 lg:mx-40
+  }
   /* task list */
   .task-list * {
     @apply mt-1
@@ -17,7 +21,5 @@
   .priority {
     @apply font-poppins text-xl font-bold  p-2 rounded-3xl
   }
-  .task-btn{
-    @apply text-2xl hover:scale-125
-  }
+
 }
