@@ -19,7 +19,7 @@
     @apply mt-1
   }
   .priority {
-    @apply font-poppins text-xl font-bold  p-2 rounded-3xl
+    @apply font-poppins sm:text-xl font-bold  p-2 rounded-3xl 
   }
 
 }

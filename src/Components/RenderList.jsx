@@ -27,7 +27,13 @@ const RenderList = ({ task }) => {
 
   return (
     <div>
-      <div className="x-margin task-list my-7 rounded-lg p-3 bg-list">
+      <div
+        className={`x-margin task-list mb-7 rounded-lg p-3 ${
+          task.priority === "Important"
+            ? "bg-important"
+            : `${task.priority === "Moderate" ? "bg-moderate" : "bg-low"}`
+        }`}
+      >
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-poppins">{task.title}</h1>
           <p className="font-poppins text-md">
@@ -37,22 +43,18 @@ const RenderList = ({ task }) => {
         <h4 className="font-Ysabeau text-md">{task.description}</h4>
         {/* Checkbox, Priority, Edit, Delete */}
         <div className="flex justify-between">
-          <div className="flex gap-2">
+          <div className="flex items-center sm:gap-2">
             <label htmlFor="completed">Completed :</label>
             <input
               type="checkbox"
               onChange={() => dispatch(tasksCompleted(task.taskId))}
               name="complete"
               id="completed"
-              className="size-7 ml-3 cursor-pointer"
+              className="size-4 sm:size-7 ml-1 cursor-pointer"
             />
           </div>
           <p
-            className={`font-Roboto rounded-full p-2 ${
-              task.priority === "Important"
-                ? "bg-important"
-                : `${task.priority === "Moderate" ? "bg-moderate" : "bg-low"}`
-            }`}
+            className="font-Roboto rounded-full p-1 sm:p-2 outline"
           >
             {task.priority}
           </p>

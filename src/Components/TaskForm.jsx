@@ -91,7 +91,7 @@ const addNewTask = (e) => {
         {/* Starting a grid layout */}
         <div className="grid grid-cols-4  gap-3">
           {/* First grid column */}
-          <div className="col-span-3">
+          <div className="col-span-2 sm:col-span-3">
             <input
               type="text"
               value={newTask.title}
@@ -104,7 +104,7 @@ const addNewTask = (e) => {
               className="input-field font-bold text-xl"
             />
           </div>
-          <div className="col-span-1">
+          <div className="col-span-2 sm:col-span-1">
             <input
               type="date"
               value={newTask.dueDate}
