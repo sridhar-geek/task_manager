@@ -9,8 +9,6 @@ import { deleteTask,revertCompletedTasks } from "../Redux/Task_Slice";
 const CompletedTasks = ({ task }) => {
   const dispatch = useDispatch();
 
-  // retriewing data from redux store
-
   //checking prop types
   CompletedTasks.propTypes = {
     task: PropTypes.shape({
@@ -22,11 +20,11 @@ const CompletedTasks = ({ task }) => {
     }).isRequired,
   };
 
-  // Delete task from list
 
   return (
     <div>
-      <div className="x-margin task-list mb-7 rounded-lg p-3 bg-completed">
+      {/* Task main component */}
+      <div className="x-margin task-list mb-7 rounded-lg p-3 shadow-lg shadow-green-600 bg-completed">
         <div className="flex items-center justify-between">
           <h1 className="text-lg sm:text-2xl font-poppins line-through">
             {task.title}

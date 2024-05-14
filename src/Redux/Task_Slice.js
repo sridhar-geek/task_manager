@@ -12,9 +12,11 @@ const taskSlice = createSlice({
   name: "task",
   initialState,
   reducers: {
+    // adding task to redux global store
     addTask: (state, action) => {
       state.tasks.push(action.payload);
     },
+    // deleting task and checks if it is in completed tasks or tasks array
     deleteTask: (state, action) => {
       const taskIdToDelete = action.payload;
       
@@ -29,10 +31,12 @@ const taskSlice = createSlice({
         )
       }
     },
+    // It changes state of isEdit and editId to modify the task in taskForm
     editTask: (state, action) => {
       state.isEdit = true;
       state.editId = action.payload;
     },
+    // Setting tasks as completed and removes the task from main tasks array
     tasksCompleted: (state, action) => {
       const completedTask = state.tasks.find(
         (task) => task.taskId === action.payload
@@ -44,6 +48,7 @@ const taskSlice = createSlice({
         );
       }
     },
+    // Revert completed tasks to main tasks and removes the task from completed tasks array
     revertCompletedTasks: (state, action) => {
       const task = state.completedTasks.find(
         (task) => task.taskId === action.payload
@@ -55,9 +60,11 @@ const taskSlice = createSlice({
         );
       }
     },
+    // auto incrementing id for each task
     incrementId: (state, action) => {
       state.id = action.payload;
     },
+    // complete editing the task
     completeEdit: (state, action) => {
       state.isEdit = false;
       const task = state.tasks.find((task) => task.taskId === state.editId);
@@ -80,4 +87,5 @@ export const {
   tasksCompleted,
   revertCompletedTasks,
 } = taskSlice.actions;
+
 export default taskSlice.reducer;

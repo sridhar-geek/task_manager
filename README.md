@@ -9,6 +9,7 @@
 2. Edit existing tasks
 3. Mark tasks as completed
 4. Prioritize tasks
+5. Filter and Sort Tasks
 
 *View the live demo of the Project [from here](https://task-manager-woad-seven.vercel.app/)*
 

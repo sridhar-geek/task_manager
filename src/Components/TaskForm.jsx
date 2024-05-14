@@ -21,6 +21,7 @@ const { id, tasks, isEdit, editId } = useSelector(
     priority: selectedPriority,
   });
 
+  // this is used to append the new task to the tasks Form to be edited, it only changes the state of isEdit and editId changed
   useEffect(()=> {
     if(isEdit) {
       const taskToUpdate = tasks.find(task => task.taskId === editId)
@@ -34,6 +35,7 @@ const { id, tasks, isEdit, editId } = useSelector(
     }
     
   },[isEdit, editId])
+
   // Ensuring Correct due date is entered 
   const handleDueDateChange = (e) => {
     const today = new Date().toISOString().slice(0, 10); // Get today's date in YYYY-MM-DD format
@@ -57,7 +59,7 @@ const addNewTask = (e) => {
   e.preventDefault();
   dispatch(addTask(newTask));
   dispatch(incrementId(id + 1));
-
+// setting back to initial state
   setNewTask({
     taskId: id+1,
     title: "",
@@ -67,6 +69,8 @@ const addNewTask = (e) => {
     });
 
   };
+
+  // update Tasks in redux global store
   const updateTask = (e) => {
     e.preventDefault()
     dispatch(completeEdit(newTask))
@@ -170,6 +174,7 @@ const addNewTask = (e) => {
           </div>
           {/* Fourth grid column */}
           <div className="col-start-2 col-end-4">
+            {/* checks whether edit mode is on and shows edit button */}
             {isEdit ? (
               <button
                 type="submit"

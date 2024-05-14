@@ -23,12 +23,11 @@ const RenderList = ({ task }) => {
     }).isRequired,
   };
 
-  // Delete task from list
-
   return (
     <div>
+      {/* Task main component and apply colors based on priority */}
       <div
-        className={`x-margin task-list mb-7 rounded-lg p-3 ${
+        className={`x-margin task-list mb-7 rounded-lg p-3 shadow-lg shadow-primary ${
           task.priority === "Important"
             ? "bg-important"
             : `${task.priority === "Moderate" ? "bg-moderate" : "bg-low"}`

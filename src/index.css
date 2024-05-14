@@ -10,7 +10,6 @@
   .input-field {
     @apply w-full p-3 rounded-xl focus:ring focus:border-primary outline-none bg-input_bg;
   }
-
   .x-margin{
     @apply mx-3 lg:mx-40
   }
@@ -20,6 +19,14 @@
   }
   .priority {
     @apply font-poppins sm:text-xl font-bold  p-2 rounded-3xl 
+  }
+
+  /* filters */
+  .filter_items{
+    @apply font-sans flex gap-2 items-center
+  }
+  .filter_heading{
+    @apply text-lg sm:text-xl mb-2 font-poppins
   }
 
 }
