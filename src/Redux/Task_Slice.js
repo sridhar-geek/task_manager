@@ -16,9 +16,18 @@ const taskSlice = createSlice({
       state.tasks.push(action.payload);
     },
     deleteTask: (state, action) => {
-      state.tasks = state.tasks.filter(
-        (task) => task.taskId !== action.payload
+      const taskIdToDelete = action.payload;
+      
+      const taskIndex = state.tasks.findIndex(
+        (task) => task.taskId === taskIdToDelete
       );
+      if (taskIndex !== -1) {
+        state.tasks.splice(taskIndex, 1); // Remove the task from tasks
+      } else {
+        state.completedTasks = state.completedTasks.filter(
+          (task) => task.taskId !== taskIdToDelete
+        )
+      }
     },
     editTask: (state, action) => {
       state.isEdit = true;
@@ -35,9 +44,11 @@ const taskSlice = createSlice({
         );
       }
     },
-    revertCompletedTasks:(state, action)=>{
-      const task = state.completedTasks.find((task) => task.taskId === action.payload);
-      if(task){
+    revertCompletedTasks: (state, action) => {
+      const task = state.completedTasks.find(
+        (task) => task.taskId === action.payload
+      );
+      if (task) {
         state.tasks.push(task);
         state.completedTasks = state.completedTasks.filter(
           (task) => task.taskId !== action.payload
