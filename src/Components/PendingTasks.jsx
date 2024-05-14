@@ -35,15 +35,15 @@ const RenderList = ({ task }) => {
         }`}
       >
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-poppins">{task.title}</h1>
-          <p className="font-poppins text-md">
+          <h1 className="text-lg sm:text-2xl font-poppins">{task.title}</h1>
+          <p className="font-poppins text-sm sm:text-xl">
             Due Date : <span className="font-ubuntu">{task.dueDate}</span>
           </p>
         </div>
-        <h4 className="font-Ysabeau text-md">{task.description}</h4>
+        <h4 className="font-Ysabeau text-lg sm:text-xl">{task.description}</h4>
         {/* Checkbox, Priority, Edit, Delete */}
         <div className="flex justify-between">
-          <div className="flex items-center sm:gap-2">
+          <div className="flex items-center text-sm sm:text-lg sm:gap-2">
             <label htmlFor="completed">Completed :</label>
             <input
               type="checkbox"
@@ -53,15 +53,13 @@ const RenderList = ({ task }) => {
               className="size-4 sm:size-7 ml-1 cursor-pointer"
             />
           </div>
-          <p
-            className="font-Roboto rounded-full p-1 sm:p-2 outline"
-          >
+          <p className="font-Roboto text-sm sm:text-lg rounded-full p-1 sm:p-2 outline">
             {task.priority}
           </p>
           {/* action buttons */}
           <div className="flex gap-4 pr-5">
             <button
-              className={`text-2xl  ${
+              className={`text-lg sm:text-2xl transition duration-500 ${
                 isEdit
                   ? `text-slate-400`
                   : `hover:scale-125 hover:text-blue-500`
@@ -72,7 +70,7 @@ const RenderList = ({ task }) => {
               <FaEdit />{" "}
             </button>
             <button
-              className={`text-2xl  ${
+              className={` text-lg sm:text-2xl transition duration-500  ${
                 isEdit ? `text-slate-400` : `hover:scale-125 hover:text-red-600`
               }`}
               disabled={isEdit}

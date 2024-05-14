@@ -26,42 +26,44 @@ const CompletedTasks = ({ task }) => {
 
   return (
     <div>
-      <div
-        className= "x-margin task-list mb-7 rounded-lg p-3 bg-list"
-      >
+      <div className="x-margin task-list mb-7 rounded-lg p-3 bg-completed">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-poppins line-through">{task.title}</h1>
-          <p className="font-poppins text-md">
+          <h1 className="text-lg sm:text-2xl font-poppins line-through">
+            {task.title}
+          </h1>
+          <p className="font-poppins text-sm sm:text-xl">
             Due Date : <span className="font-ubuntu">{task.dueDate}</span>
           </p>
         </div>
-        <h4 className="font-Ysabeau text-md">{task.description}</h4>
+        <h4 className="font-Ysabeau text-lg sm:text-xl">{task.description}</h4>
         {/* Checkbox, Priority, Edit, Delete */}
         <div className="flex justify-between">
-          <div className="flex items-center sm:gap-2">
+          <div className="flex items-center text-sm sm:text-lg sm:gap-2">
             <label htmlFor="completed">Completed :</label>
             <input
               type="checkbox"
               defaultChecked
-              onChange={() => {dispatch(revertCompletedTasks(task.taskId))}}
+              onChange={() => {
+                dispatch(revertCompletedTasks(task.taskId));
+              }}
               name="complete"
               id="completed"
               className="size-4 sm:size-7 ml-1 cursor-pointer"
             />
           </div>
-          <p className="font-Roboto rounded-full p-1 sm:p-2 outline">
+          <p className="font-Roboto text-sm sm:text-lg rounded-full p-1 sm:p-2 outline">
             {task.priority}
           </p>
           {/* action buttons */}
           <div className="flex gap-4 pr-5">
             <button
-              className="text-2xl text-slate-400"
+              className="text-lg sm:text-2xl transition duration-500  text-slate-400"
               disabled={true}
             >
               <FaEdit />{" "}
             </button>
             <button
-              className= "text-2xl hover:scale-125 hover:text-red-600"
+              className="text-lg sm:text-2xl transition duration-500 hover:scale-125 hover:text-red-600"
               onClick={() => dispatch(deleteTask(task.taskId))}
             >
               <MdDeleteForever />{" "}

@@ -9,8 +9,8 @@ export default {
         input_bg: "#ced0ca",
         important: "#FF6347",
         moderate: "#FFD700",
-        low: "#32CD32",
-        completed: "",
+        low: "#8DECB4",
+        completed: "#508D69",
         list: "#C0D6E8",
       },
       fontFamily: {
