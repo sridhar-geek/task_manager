@@ -12,13 +12,13 @@ const { id, tasks, isEdit, editId } = useSelector(
 );
 
   const dispatch = useDispatch()
-  const [selectedPriority, setSelectedPriority] = useState("");
+  const [selectedPriority, setSelectedPriority] = useState("Moderate");
   const [newTask, setNewTask] = useState({
     taskId: id,
     title: "",
     description: "",
     dueDate: "",
-    priority: "",
+    priority: selectedPriority,
   });
 
   useEffect(()=> {
@@ -63,7 +63,7 @@ const addNewTask = (e) => {
     title: "",
       description: "",
       dueDate: "",
-      priority: "",
+      priority: selectedPriority,
     });
 
   };
@@ -75,7 +75,7 @@ const addNewTask = (e) => {
       title:"",
       description:"",
       dueDate:"",
-      priority:"",
+      priority: selectedPriority,
     })
   }
 
